@@ -1,0 +1,78 @@
+# Network Traffic Analyzer - Architecture
+
+```
++-------------------------+
+|         User            |
++-------------------------+
+            |
+            v
++-------------------------+
+| network_traffic_analyzer.py |
+| (Main Controller)       |
++-------------------------+
+            |
+            v
++-------------------------+
+| Interface Selection     |
+| interface_selection.py  |
++-------------------------+
+            |
+            v
++-------------------------+
+| Capture Filter Selection|
+| (ALL / TCP / UDP / ICMP |
+| / ARP)                  |
++-------------------------+
+            |
+            v
++-------------------------+
+| Packet Capture          |
+| packet_capture.py       |
++-------------------------+
+            |
+            v
++-------------------------+
+| Packet Analysis         |
+| packet_analysis.py      |
++-------------------------+
+            |
+            v
++-------------------------+
+| Display Packet Details  |
+| packet_utils.py         |
++-------------------------+
+            |
+            +------------------------+
+            |                        |
+            v                        v
++-------------------------+   +-------------------------+
+| Live Statistics         |   | CSV Report Generator    |
+| statistics.py           |   | report_generator.py     |
++-------------------------+   +-------------------------+
+            |                        |
+            |                        |
+            +-----------+------------+
+                        |
+                        v
+             +------------------------+
+             | Traffic Summary Report |
+             +------------------------+
+                        |
+                        v
+             +------------------------+
+             |        User            |
+             +------------------------+
+```
+
+## Workflow
+
+1. User starts the application.
+2. The main controller displays available network interfaces.
+3. User selects a network interface.
+4. User chooses a packet capture filter.
+5. Packets are captured using Scapy.
+6. Each packet is analyzed to extract protocol, IP addresses, ports, and packet size.
+7. Packet details are displayed in the console.
+8. Live statistics are updated periodically.
+9. Packet details are saved to a CSV report.
+10. A traffic summary report is generated after the capture completes.

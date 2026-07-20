@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+reports/*.csv
+reports/*.txt
+
+.vscode/
+.idea/
+
+.env
